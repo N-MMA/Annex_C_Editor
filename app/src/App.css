@@ -1,0 +1,241 @@
+/* ── Reset & base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brand:       #1a56a0;
+  --brand-dark:  #133f7a;
+  --brand-light: #e8f0fb;
+  --accent:      #2563eb;
+  --success:     #166534;
+  --success-bg:  #dcfce7;
+  --error:       #991b1b;
+  --error-bg:    #fee2e2;
+  --warn-bg:     #fffbeb;
+  --text:        #1e293b;
+  --text-muted:  #64748b;
+  --border:      #cbd5e1;
+  --bg:          #f8fafc;
+  --card:        #ffffff;
+  --radius:      8px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ── App layout ───────────────────────────────────────────────────────────── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.app-header {
+  background: var(--brand);
+  color: #fff;
+  padding: 20px 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.header-content h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+}
+.header-sub {
+  font-size: .85rem;
+  opacity: .75;
+  margin-top: 2px;
+  display: block;
+}
+
+/* ── Tab bar ──────────────────────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  background: var(--brand-dark);
+  padding: 0 24px;
+  gap: 4px;
+}
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 13px 20px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.65);
+  font-size: .9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.tab-btn:hover { color: #fff; }
+.tab-btn.active {
+  color: #fff;
+  border-bottom-color: #60a5fa;
+}
+
+/* ── Main content ─────────────────────────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  padding: 36px 32px;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.tab-content { display: flex; flex-direction: column; gap: 24px; }
+.tab-content h2 { font-size: 1.25rem; font-weight: 700; color: var(--brand); }
+.description { color: var(--text-muted); line-height: 1.6; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  font-size: .95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+  align-self: flex-start;
+}
+.btn-primary:hover { background: #1d4ed8; }
+.btn-primary:active { transform: scale(.98); }
+
+/* ── Drop zone ────────────────────────────────────────────────────────────── */
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  color: var(--text-muted);
+  text-align: center;
+}
+.dropzone:hover, .dropzone.dragging {
+  border-color: var(--accent);
+  background: var(--brand-light);
+  color: var(--accent);
+}
+.dropzone-label { font-weight: 600; font-size: 1rem; color: var(--text); }
+.dropzone-hint  { font-size: .85rem; }
+
+/* ── Info / status boxes ──────────────────────────────────────────────────── */
+.info-box {
+  background: var(--brand-light);
+  border-left: 4px solid var(--brand);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  font-size: .9rem;
+  line-height: 1.7;
+}
+.info-box ol { padding-left: 20px; margin-top: 8px; }
+.info-box li { margin-bottom: 4px; }
+
+.error-box {
+  background: var(--error-bg);
+  border-left: 4px solid var(--error);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: .9rem;
+  color: var(--error);
+}
+
+.summary-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: .9rem;
+}
+
+.hint { font-size: .85rem; color: var(--text-muted); }
+
+/* ── Validation report ────────────────────────────────────────────────────── */
+.validation-ok {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--success-bg);
+  color: var(--success);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-weight: 500;
+  font-size: .9rem;
+}
+
+.validation-report {
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.validation-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--error-bg);
+  color: var(--error);
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: .9rem;
+}
+.validation-group { border-top: 1px solid #fca5a5; }
+.validation-sheet {
+  background: #fff5f5;
+  padding: 8px 16px;
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--error);
+}
+.validation-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .85rem;
+}
+.validation-table th {
+  background: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid #fecaca;
+  color: var(--text-muted);
+  font-size: .8rem;
+}
+.validation-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #fee2e2;
+  vertical-align: top;
+}
+.validation-table tr:last-child td { border-bottom: none; }
+.validation-table td:first-child { width: 60px; color: var(--text-muted); }
+.validation-table td:nth-child(2) { width: 180px; font-weight: 500; }
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+.app-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: .78rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .app-header { padding: 16px 16px; }
+  .tab-bar { padding: 0 8px; }
+  .tab-btn { padding: 12px 12px; font-size: .82rem; }
+  .main-content { padding: 24px 16px; }
+}
