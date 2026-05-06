@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { Download, FileSpreadsheet, FileCode2, RefreshCw } from 'lucide-react'
+import { Download, FileSpreadsheet, FileCode2, RefreshCw, AlertCircle } from 'lucide-react'
 import { FileDropZone } from './components/FileDropZone'
 import { ValidationReport } from './components/ValidationReport'
 import { generateTemplate } from './lib/excelTemplate'
-import { parseExcel } from './lib/excelParser'
 import { generateXML } from './lib/xmlGenerator'
 import { parseXML } from './lib/xmlParser'
 import { validate } from './lib/validation'
+import { validateXMLAgainstSchema } from './lib/xmlValidator'
+import type { ParseResult } from './lib/excelParser'
 import type { RFCData, ValidationError } from './types'
 import './App.css'
 
@@ -69,29 +70,69 @@ function TemplateTab() {
 
 function ExcelToXmlTab() {
   const [errors, setErrors] = useState<ValidationError[] | null>(null)
+  const [warnings, setWarnings] = useState<string[]>([])
   const [data, setData] = useState<RFCData | null>(null)
   const [parseError, setParseError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [xsdErrors, setXsdErrors] = useState<string[]>([])
+  const [xsdChecking, setXsdChecking] = useState(false)
   const [filename, setFilename] = useState('')
 
-  async function handleFile(file: File) {
+  function handleFile(file: File) {
     setErrors(null)
+    setWarnings([])
     setData(null)
     setParseError(null)
+    setXsdErrors([])
+    setLoading(true)
     setFilename(file.name)
-    try {
-      const buf = await file.arrayBuffer()
-      const parsed = parseExcel(buf)
-      const errs = validate(parsed)
-      setData(parsed)
-      setErrors(errs)
-    } catch (e) {
+
+    file.arrayBuffer().then(buf => {
+      const worker = new Worker(
+        new URL('./workers/excelParser.worker.ts', import.meta.url),
+        { type: 'module' },
+      )
+      worker.onmessage = (e: MessageEvent<{ ok: true; result: ParseResult } | { ok: false; error: string }>) => {
+        worker.terminate()
+        setLoading(false)
+        if (!e.data.ok) {
+          setParseError(e.data.error)
+          return
+        }
+        const { data: parsed, warnings: w } = e.data.result
+        const errs = validate(parsed)
+        setData(parsed)
+        setErrors(errs)
+        setWarnings(w)
+      }
+      worker.onerror = err => {
+        worker.terminate()
+        setLoading(false)
+        setParseError(err.message)
+      }
+      worker.postMessage(buf, [buf])
+    }).catch(e => {
+      setLoading(false)
       setParseError(e instanceof Error ? e.message : String(e))
-    }
+    })
   }
 
-  function downloadXML() {
+  async function downloadXML() {
     if (!data) return
     const xml = generateXML(data)
+    setXsdChecking(true)
+    setXsdErrors([])
+    try {
+      const xsdResult = await validateXMLAgainstSchema(xml)
+      if (!xsdResult.valid) {
+        setXsdErrors(xsdResult.errors)
+        setXsdChecking(false)
+        return
+      }
+    } catch {
+      // XSD schemas unavailable (e.g. offline after first load) — skip and proceed
+    }
+    setXsdChecking(false)
     const baseName = filename.replace(/\.[^.]+$/, '')
     downloadBlob(xml, `${baseName}_AnexoC.xml`, 'application/xml')
   }
@@ -110,9 +151,21 @@ function ExcelToXmlTab() {
         label="Ficheiro Excel (.xlsx)"
         onFile={handleFile}
       />
+      {loading && <div className="info-box">A processar ficheiro…</div>}
       {parseError && (
         <div className="error-box">
           <strong>Erro ao ler o ficheiro:</strong> {parseError}
+        </div>
+      )}
+      {warnings.length > 0 && (
+        <div className="warn-box">
+          <div className="warn-header">
+            <AlertCircle size={16} />
+            <strong>{warnings.length} aviso{warnings.length !== 1 ? 's' : ''} de consistência</strong>
+          </div>
+          <ul className="warn-list">
+            {warnings.map((w, i) => <li key={i}>{w}</li>)}
+          </ul>
         </div>
       )}
       {errors !== null && <ValidationReport errors={errors} />}
@@ -123,10 +176,21 @@ function ExcelToXmlTab() {
           {data.workers.length} trabalhador(es)
         </div>
       )}
+      {xsdErrors.length > 0 && (
+        <div className="error-box">
+          <strong>Validação XSD falhou — o XML gerado não é conforme com o schema oficial:</strong>
+          <ul style={{ marginTop: 8, paddingLeft: 20 }}>
+            {xsdErrors.map((e, i) => <li key={i}>{e}</li>)}
+          </ul>
+          <p style={{ marginTop: 8, fontSize: '.85rem' }}>
+            Por favor reporte este erro — pode indicar um problema no gerador.
+          </p>
+        </div>
+      )}
       {canExport && (
-        <button className="btn-primary" onClick={downloadXML}>
+        <button className="btn-primary" onClick={downloadXML} disabled={xsdChecking}>
           <Download size={18} />
-          Exportar XML
+          {xsdChecking ? 'A validar schema…' : 'Exportar XML'}
         </button>
       )}
       {errors !== null && errors.length > 0 && (

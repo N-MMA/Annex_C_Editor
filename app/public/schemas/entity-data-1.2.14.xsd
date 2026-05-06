@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:sul="http://www.gep.msess.gov.pt/sguri/sul"
+           xmlns:t="http://www.gep.msess.gov.pt/sguri/tipos_comuns"
+           targetNamespace="http://www.gep.msess.gov.pt/sguri/ru"
+           elementFormDefault="qualified"
+           version="1.2.14">
+    <xs:import namespace="http://www.gep.msess.gov.pt/sguri/sul" schemaLocation="sul-1.2.14.xsd"/>
+    <xs:import namespace="http://www.gep.msess.gov.pt/sguri/tipos_comuns" schemaLocation="tipos-comuns-1.3.14.xsd"/>
+    <xs:element name="entity_data">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="active_estabs" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="estabs" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="estab" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="hq" type="xs:boolean"/>
+                                                <xs:attribute name="id" type="xs:long"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="annex" use="required" type="xs:string"/>
+                                    <xs:attribute name="excluded" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="year_ref" type="t:yearType"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="entity_config" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="strikes">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="strike" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="desc" type="xs:string"/>
+                                                    <xs:element name="date_start" type="xs:string"/>
+                                                    <xs:element name="date_end" type="xs:string"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="code" type="xs:string"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ircts">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="irct" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:attribute name="code" type="xs:string"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="sul:entity"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="excluded" type="xs:string"/>
+</xs:schema>

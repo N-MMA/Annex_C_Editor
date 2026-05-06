@@ -1,0 +1,1758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:t="http://www.gep.msess.gov.pt/sguri/tipos_comuns" 
+	xmlns="http://www.gep.msess.gov.pt/sguri/ru/anexo_sst" targetNamespace="http://www.gep.msess.gov.pt/sguri/ru/anexo_sst" elementFormDefault="qualified" version="2.3.14">
+	<xs:import namespace="http://www.gep.msess.gov.pt/sguri/tipos_comuns" schemaLocation="tipos-comuns-1.3.14.xsd" />
+	<xs:element name="anexo_sst" type="anexo_sstType">
+		<xs:annotation>
+			<xs:documentation>ANEXO D - RELATÓRIO ANUAL DE ACTIVIDADE DO SERVIÇO DE SEGURANÇA E SAÚDE NO TRABALHO </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="anexo_sstType">
+		<xs:sequence>
+			<xs:element name="nome_entidade" type="t:max70Type">
+				<xs:annotation>
+					<xs:documentation>I - Nome ou Designação social</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="estabs">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="estab" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<!-- I - UNIDADE LOCAL (ESTABELECIMENTO) -->
+									<xs:element name="exist_trab_serv" type="t:choiceType">
+										<xs:annotation>
+											<xs:documentation>I - 1. Existiram trabalhadores ao serviço em algum período de referência do relatório? </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="dados_sst" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="cae_31Dez" type="t:caeType">
+													<xs:annotation>
+														<xs:documentation>I - 2. Actividade económica principal (CAE) da unidade local em 31 de Dezembro. </xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="n_medio_trab">
+													<xs:annotation>
+														<xs:documentation>I - 3. Número médio de trabalhadores afectos à unidade local (estabelecimento), no ano. </xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="vinc" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.1 Vinculados por contrato de trabalho ou equiparado ao empregador responsável pelo relatório (3.1.1 + 3.1.2). </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="total" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Total. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="h" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Homens. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="m" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Mulheres. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="vinc_a_trab" type="n_medio_trabType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.1.1 A trabalhar na unidade local (estabelecimento). </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="vinc_trab_fora" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.1.2 A trabalhar fora da unidade local (estabelecimento) (3.1.2.1 + 3.1.2.2 + 3.1.2.3). </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="total" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Total. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="h" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Homens. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="m" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Mulheres. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="vinc_trab_fora_temp" type="n_medio_trabType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.1.2.1 Trabalhadores temporários cedidos por contrato de utilização. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="vinc_trab_fora_ocas" type="n_medio_trabType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.1.2.2 Trabalhadores em regime de cedência ocasional. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="vinc_trab_fora_outros" type="n_medio_trabType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.1.2.3 Outros trabalhadores (em regime de teletrabalho ou trabalhadores no domicílio). </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="outros" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.2 Outros trabalhadores a trabalhar na unidade local (estabelecimento) (3.2.1 + 3.2.2 + 3.2.3). </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="total" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Total. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="h" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Homens. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="m" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Mulheres. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="outros_ced" type="n_medio_trabType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.2.1 Trabalhadores temporários cedidos por contrato de utilização. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="outros_ind" type="n_medio_trabType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.2.2 Trabalhadores independentes e trabalhadores ao serviço de empresas prestadoras de serviços. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="outros_ocas" type="n_medio_trabType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>I - 3.2.3 Trabalhadores em regime de cedência ocasional. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="total">
+																<xs:annotation>
+																	<xs:documentation>I - 3.3 TOTAL (3.1 + 3.2) </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="total" type="t:num7Type">
+																			<xs:annotation>
+																				<xs:documentation>Total. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="h" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Homens. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="m" type="t:num6Type" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>Mulheres. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="n_total_efec" type="t:num9Type" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>I - 4. Número total de horas efectivamente trablhadas (incluindo as suplementares) durante o ano, pelos trabalhadores declarados em 3.1.1. </xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<!-- II - NATUREZA DA MODALIDADE ADOPTADA NA ORGANIZAÇÃO DOS SERVIÇOS DE SEGURANÇA E SAÚDE NO TRABALHO. -->
+												<xs:element name="organi_serv_seg" type="t:choiceType">
+													<xs:annotation>
+														<xs:documentation>II - 1. Foram organizados os serviços de segurança no trabalho? </xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="organi_serv_saude" type="t:choiceType">
+													<xs:annotation>
+														<xs:documentation>II - 2. Foram organizados os serviços de saúde no trabalho? </xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="servicos_sst" minOccurs="0">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="n_trab_afect" type="t:num3Type">
+																<xs:annotation>
+																	<xs:documentation>II - 3. Quantos trabalhadores estão afectos à organização da estrutura interna de 1ºs socorros, combate a incêndios e evacuação de instalações? </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="org_no_estab" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>II - 4. As actividades de segurança e saúde no trabalho foram organizadas. </xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="C">
+																			<xs:annotation>
+																				<xs:documentation>Em conjunto. </xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																		<xs:enumeration value="S">
+																			<xs:annotation>
+																				<xs:documentation>Em separado. </xs:documentation>
+																			</xs:annotation>
+																		</xs:enumeration>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="modalidade">
+																<xs:annotation>
+																	<xs:documentation>II - 5. Especifique a modalidade. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="seguranca" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>II - 5.1 No domínio da segurança. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="serv_internos" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.1.1 Serviço interno (SI). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="serv_part" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.1.2 Serviço comum (SCP). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="serv_ext" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.1.3 Serviço externo (SE). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="act_empreg" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.1.4 Actividades exercidas pelo empregador (E). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="act_trab" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.1.5 Actividades exercidas pelo trabalhador designado (TD). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="saude" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>II - 5.2 No domínio da saúde. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="serv_internos" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.2.1 Serviço interno (SI). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="serv_part" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.2.2 Serviço comum (SCP). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="serv_ext" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.2.3 Serviço externo (E). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="serv_saude" type="t:choiceType">
+																						<xs:annotation>
+																							<xs:documentation>II - 5.2.4 Serviço Nacional/Regional de Saúde (SNS/SRS). </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="compl" type="t:choiceType">
+																<xs:annotation>
+																	<xs:documentation>II - 6. Foram complementados os serviços especificados em 5.? </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<!-- III - PESSOAL DOS SERVIÇOS DE SEGURANÇA E SAÚDE NO TRABALHO. -->
+															<!-- III - 1.1 Indique o número de técnicos em cada grupo profissional, que exerceram actividade efectiva na unidade local -->
+															<xs:element name="n_medicos" type="t:num2Type" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.1.1 Médicos do trabalho. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="n_enfer" type="t:num2Type" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.1.2 Enfermeiros. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="n_tec_sup_sht" type="t:num2Type" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.1.3 Técnicos Superiores de SHT. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="n_tec_sht" type="t:num2Type" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.1.4 Técnicos de SHT. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="outro_pess" type="t:num2Type" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.1.5 Outro pessoal. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="medicos" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.2 Médico(s) do trabalho. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="medico" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Médico </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="nome" type="t:max70Type">
+																						<xs:annotation>
+																							<xs:documentation>III - 1.2.1 Nome do Médico do trabalho. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="n_cedula" type="t:num5Type">
+																						<xs:annotation>
+																							<xs:documentation>III - 1.2.2 Nº da célula profissional. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="n_horas_mes">
+																						<xs:annotation>
+																							<xs:documentation>III - 1.2.3 Nº de horas mensais de afectação. </xs:documentation>
+																						</xs:annotation>
+																						<xs:simpleType>
+																							<xs:annotation>
+																								<xs:documentation>HHH,MM (H - horas ; M - minutos) </xs:documentation>
+																							</xs:annotation>
+																							<xs:restriction base="xs:token">
+																								<xs:pattern value="\d{1,3},\d{2}" />
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="tec_shts" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="tec_sht" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>III - 1.3 Técnico de Segurança e Higiene do Trabalho. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="nome" type="t:max70Type">
+																						<xs:annotation>
+																							<xs:documentation>III - 1.3.1 Nome do técnico de Segurança e Higiene no Trabalho. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="cap" type="t:capType">
+																						<xs:annotation>
+																							<xs:documentation>III - 1.3.2 Nº Certificado de aptidão Profissional (CAP) </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<!-- III - 1.4 Director/Responsável dos Serviços -->
+															<xs:element name="resp_segu" type="responsavelType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.4.1 Director/Responsável dos Serviços de Segurança. </xs:documentation>
+																</xs:annotation>
+																<!-- III - 1.4.1.1 NIF -->
+																<!-- III - 1.4.1.2 Nome -->
+															</xs:element>
+															<xs:element name="resp_saud" type="responsavelType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.4.2 Director/Responsável dos Serviços de Saúde. </xs:documentation>
+																</xs:annotation>
+																<!-- III - 1.4.2.1 NIF -->
+																<!-- III - 1.4.2.2 Nome -->
+															</xs:element>
+															<xs:element name="empregador" type="intervenienteType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.5 Empregador. </xs:documentation>
+																</xs:annotation>
+																<!-- III - 1.5.1 Nome -->
+																<!-- III - 1.5.2 nº autorização -->
+															</xs:element>
+															<xs:element name="trab_designado" type="intervenienteType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.6 Trabalhador Designado. </xs:documentation>
+																</xs:annotation>
+																<!-- III - 1.6.1 Nome -->
+																<!-- III - 1.6.2 nº autorização -->
+															</xs:element>
+															<xs:element name="nome_repr" type="t:max70Type" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>III - 1.8 Nome do Representante do empregador para o acompanhamento de identificação dos serviços comuns/partilhados ou externos. </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<!-- No caso de Serviços Externos, indicar denominação e número de identificação fiscal da(s) entidade(s) prestadora(s) -->
+															<xs:element name="servicos_ext" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="servicos_seg" minOccurs="0">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="servico_seg" type="servicoType" minOccurs="0" maxOccurs="unbounded">
+																						<xs:annotation>
+																							<xs:documentation>III - 2.1 Serviços de Segurança. </xs:documentation>
+																						</xs:annotation>
+																						<!-- III - 2.1.1 NIF -->
+																						<!-- III - 2.1.3 Tipo -->
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="servicos_saude" minOccurs="0">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="servico_saude" type="servicoType" minOccurs="0" maxOccurs="unbounded">
+																						<xs:annotation>
+																							<xs:documentation>III - 2.1 Serviços de Saúde. </xs:documentation>
+																						</xs:annotation>
+																						<!-- III - 2.2.1 NIF -->
+																						<!-- III - 2.2.3 Tipo -->
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<!-- IV - ACTIVIDADE(S) DOS(S) SERVIÇO(S) DE SEGURANÇA E SAÚDE NO TRABALHO -->
+															<!-- IV - 1. Foram organizados programas de prevenção? -->
+															<xs:element name="org_prog_prev" type="t:choiceType">
+																<xs:annotation>
+																	<xs:documentation>IV - 1.1 Foram organizados programas de prevenção de riscos profissionais? </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="org_prom_saude" type="t:choiceType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>IV - 1.2 Foram organizados programas de promoção da saúde? </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="org_vigil_saude" type="t:choiceType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>IV - 1.3 Foram organizados programas de vigilância da saúde? </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="org_audit" type="t:choiceType">
+																<xs:annotation>
+																	<xs:documentation>IV - Foram organizadas Auditorias? </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="org_insp" type="t:choiceType">
+																<xs:annotation>
+																	<xs:documentation>IV - Foram realizadas Inspecções? </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="accoes_inf">
+																<xs:annotation>
+																	<xs:documentation>IV - 4.1 Informação aos trabalhadores sobre as riscos inerentes à sua actividade profissional. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="accao_inf" minOccurs="0" maxOccurs="unbounded">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="situacao">
+																						<xs:complexType>
+																							<xs:simpleContent>
+																								<xs:restriction base="t:codigoType">
+																									<xs:attribute name="tbl" use="required" fixed="SST_ACC_INFO" type="xs:string">
+																										<xs:annotation>
+																											<xs:documentation> TABELA Nº 38 - Acções de informação. </xs:documentation>
+																										</xs:annotation>
+																									</xs:attribute>
+																								</xs:restriction>
+																							</xs:simpleContent>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="n_accoes" type="t:num3Type">
+																						<xs:annotation>
+																							<xs:documentation>IV - 4.1.1.2 Nº de acções realizadas. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="n_destinat" type="t:num5Type">
+																						<xs:annotation>
+																							<xs:documentation>IV - 4.1.1.3 Nº de destinatários. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="realizadas" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 4.1.1 Foram realizadas acções de formação? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="accoes_consult">
+																<xs:annotation>
+																	<xs:documentation>IV - 4.2 Consulta aos trabalhadores nos domínios da Segurança e Saúde no Trabalho. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="accao_consult" minOccurs="0" maxOccurs="unbounded">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="razao">
+																						<xs:complexType>
+																							<xs:simpleContent>
+																								<xs:restriction base="t:codigoType">
+																									<xs:attribute name="tbl" use="required" fixed="SST_ACC_CONS" type="xs:string">
+																										<xs:annotation>
+																											<xs:documentation> TABELA Nº 39 - Acções de consulta. </xs:documentation>
+																										</xs:annotation>
+																									</xs:attribute>
+																								</xs:restriction>
+																							</xs:simpleContent>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="n_accoes" type="t:num3Type">
+																						<xs:annotation>
+																							<xs:documentation>IV - 4.2.1.2 Nº de acções realizadas. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="n_participantes" type="t:num5Type">
+																						<xs:annotation>
+																							<xs:documentation>IV - 4.2.1.3 Nº de participantes. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="realizadas" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 4.2.1 Foram realizadas acções de consulta? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="accoes_form">
+																<xs:annotation>
+																	<xs:documentation>IV - 4.3 Formação dos trabalhadores nos domínios da Segurança e Saúde no Trabalho. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="accao_form" minOccurs="0" maxOccurs="unbounded">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="tema">
+																						<xs:annotation>
+																							<xs:documentation>IV - 4.3.1.1 Tema da formação. </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:simpleContent>
+																								<xs:restriction base="t:codigoType">
+																									<xs:attribute name="tbl" use="required" fixed="SST_ACC_FORM" type="xs:string">
+																										<xs:annotation>
+																											<xs:documentation> TABELA Nº 40 - Acções de Formação. </xs:documentation>
+																										</xs:annotation>
+																									</xs:attribute>
+																								</xs:restriction>
+																							</xs:simpleContent>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="n_accoes" type="t:num3Type">
+																						<xs:annotation>
+																							<xs:documentation>IV - 4.3.1.2 Nº de acções realizadas. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="n_particip">
+																						<xs:annotation>
+																							<xs:documentation>4.3.1.3 Nº de participantes. </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:sequence>
+																								<xs:element name="h" type="t:num5Type">
+																									<xs:annotation>
+																										<xs:documentation> Homens. </xs:documentation>
+																									</xs:annotation>
+																								</xs:element>
+																								<xs:element name="m" type="t:num5Type">
+																									<xs:annotation>
+																										<xs:documentation> Mulheres. </xs:documentation>
+																									</xs:annotation>
+																								</xs:element>
+																							</xs:sequence>
+																						</xs:complexType>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="realizadas" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 4.3.1 Foram realizadas acções de formação? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<!-- IV - 5. Identificação, avaliação e controlo aos factores de risco. -->
+															<xs:element name="riscos_fisicos">
+																<xs:annotation>
+																	<xs:documentation>Factores de risco físico. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="risco_fisico" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Factor de risco físico. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:complexContent>
+																					<xs:extension base="fact_riscoType">
+																						<xs:sequence>
+																							<!-- IV - 5.1.2 Nº de trabalhadores expostos. -->
+																							<!-- IV - 5.1.3 Nº de avaliações efectuadas. -->
+																							<xs:element name="agente">
+																								<xs:annotation>
+																									<xs:documentation>IV 5.1.1 Agente. </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:simpleContent>
+																										<xs:restriction base="t:codigoType">
+																											<xs:attribute name="tbl" use="required" fixed="SST_FACT_RISCFIS" type="xs:string">
+																												<xs:annotation>
+																													<xs:documentation> TABELA Nº 41 - Factores de Risco Físico e Medidas de Prevenção Adoptadas. </xs:documentation>
+																												</xs:annotation>
+																											</xs:attribute>
+																										</xs:restriction>
+																									</xs:simpleContent>
+																								</xs:complexType>
+																							</xs:element>
+																							<xs:element name="medidas_prev">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.1.4 Medidas de prevenção adoptadas. </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:sequence>
+																										<xs:element name="medida_prev" maxOccurs="unbounded">
+																											<xs:complexType>
+																												<xs:simpleContent>
+																													<xs:restriction base="t:codigoType">
+																														<xs:attribute name="tbl" use="required" fixed="FRF_COD_AGENTE" type="xs:string">
+																															<xs:annotation>
+																																<xs:documentation> TABELA Nº 41 - Factores de Risco Físico e Medidas de Prevenção Adoptadas. </xs:documentation>
+																															</xs:annotation>
+																														</xs:attribute>
+																													</xs:restriction>
+																												</xs:simpleContent>
+																											</xs:complexType>
+																										</xs:element>
+																									</xs:sequence>
+																								</xs:complexType>
+																							</xs:element>
+																						</xs:sequence>
+																					</xs:extension>
+																				</xs:complexContent>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="identificados" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 5.1 Foram identificados factores de risco físico? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="riscos_quim">
+																<xs:annotation>
+																	<xs:documentation>Factores de risco químico. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="risco_quim" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Factor de risco químico. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:complexContent>
+																					<xs:extension base="fact_riscoType">
+																						<xs:sequence>
+																							<!-- IV - 5.2.4 Nº de trabalhadores expostos. -->
+																							<!-- IV - 5.2.5 Nº de avaliações efectuadas. -->
+																							<xs:element name="einecs">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.2.1 EINECS (nº CE) </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:simpleContent>
+																										<xs:restriction base="t:codigoType">
+																											<xs:attribute name="tbl" use="required" fixed="SST_EINECS" type="xs:string">
+																												<xs:annotation>
+																													<xs:documentation> TABELA Nº 42 - Factores de Risco Químico e Medidas de Prevenção Adoptadas. </xs:documentation>
+																												</xs:annotation>
+																											</xs:attribute>
+																										</xs:restriction>
+																									</xs:simpleContent>
+																								</xs:complexType>
+																							</xs:element>
+																							<xs:element name="mencoes">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.2.3 Menção ou frase de risco </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:sequence>
+																										<xs:element name="mencao" maxOccurs="unbounded">
+																											<xs:complexType>
+																												<xs:simpleContent>
+																													<xs:restriction base="t:codigoType">
+																														<xs:attribute name="tbl" use="required" fixed="FRQ_MF_RISCO" type="xs:string">
+																															<xs:annotation>
+																																<xs:documentation> TABELA Nº 42 - Factores de Risco Químico e Medidas de Prevenção Adoptadas. </xs:documentation>
+																															</xs:annotation>
+																														</xs:attribute>
+																													</xs:restriction>
+																												</xs:simpleContent>
+																											</xs:complexType>
+																										</xs:element>
+																									</xs:sequence>
+																								</xs:complexType>
+																							</xs:element>
+																							<xs:element name="medidas_prev">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.2.6 Medidas de prevenção adoptadas. </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:sequence>
+																										<xs:element name="medida_prev" maxOccurs="unbounded">
+																											<xs:complexType>
+																												<xs:simpleContent>
+																													<xs:restriction base="t:codigoType">
+																														<xs:attribute name="tbl" use="required" fixed="FRQ_CM_PREV_ADOPT" type="xs:string">
+																															<xs:annotation>
+																																<xs:documentation> TABELA Nº 42 - Factores de Risco Químico e Medidas de Prevenção Adoptadas. </xs:documentation>
+																															</xs:annotation>
+																														</xs:attribute>
+																													</xs:restriction>
+																												</xs:simpleContent>
+																											</xs:complexType>
+																										</xs:element>
+																									</xs:sequence>
+																								</xs:complexType>
+																							</xs:element>
+																						</xs:sequence>
+																					</xs:extension>
+																				</xs:complexContent>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="identificados" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 5.2 Foram identificados factores de risco químico? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="riscos_bio">
+																<xs:annotation>
+																	<xs:documentation>Factores de riscos biológicos. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="risco_bio" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Factor de risco biológico. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:complexContent>
+																					<xs:extension base="fact_riscoType">
+																						<xs:sequence>
+																							<!-- IV - 5.3.4 Nº de trabalhadores expostos. -->
+																							<!-- IV - 5.3.5 Nº de avaliações efectuadas. -->
+																							<xs:element name="agente">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.3.1 Agente. </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:simpleContent>
+																										<xs:restriction base="t:codigoType">
+																											<xs:attribute name="tbl" use="required" fixed="FRB_IC_AGENTE" type="xs:string">
+																												<xs:annotation>
+																													<xs:documentation> TABELA Nº 43 - Factores de Risco Biológico e Medidas de Prevenção Adoptadas. </xs:documentation>
+																												</xs:annotation>
+																											</xs:attribute>
+																										</xs:restriction>
+																									</xs:simpleContent>
+																								</xs:complexType>
+																							</xs:element>
+																							<xs:element name="medidas_prev">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.3.6 Medidas de prevenção adoptadas. </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:sequence>
+																										<xs:element name="medida_prev" maxOccurs="unbounded">
+																											<xs:complexType>
+																												<xs:simpleContent>
+																													<xs:restriction base="t:codigoType">
+																														<xs:attribute name="tbl" use="required" fixed="FRB_CM_PREV_ADOPT" type="xs:string">
+																															<xs:annotation>
+																																<xs:documentation> TABELA Nº 43 - Factores de Risco Biológico e Medidas de Prevenção Adoptadas. </xs:documentation>
+																															</xs:annotation>
+																														</xs:attribute>
+																													</xs:restriction>
+																												</xs:simpleContent>
+																											</xs:complexType>
+																										</xs:element>
+																									</xs:sequence>
+																								</xs:complexType>
+																							</xs:element>
+																						</xs:sequence>
+																					</xs:extension>
+																				</xs:complexContent>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="identificados" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 5.3 Foram identificados factores de risco biológico? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="riscos_muscoe">
+																<xs:annotation>
+																	<xs:documentation>Factores de risco relacionados com a actividade, capazes de originar alterações do sistema músculo-esquelético. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="risco_muscoe" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Factor de risco relacionado com a actividade, capaz de originar alterações do sistema músculo-esquelético. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:complexContent>
+																					<xs:extension base="fact_riscoType">
+																						<xs:sequence>
+																							<!-- IV - 5.4.2 Nº de trabalhadores expostos. -->
+																							<!-- IV - 5.4.3 Nº de avaliações efectuadas. -->
+																							<xs:element name="agente">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.4.1 Agente </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:simpleContent>
+																										<xs:restriction base="t:codigoType">
+																											<xs:attribute name="tbl" use="required" fixed="FRRA_COD_AGENTE" type="xs:string">
+																												<xs:annotation>
+																													<xs:documentation> TABELA Nº 44 - Factores de Risco Relacionados com a Actividade, Capazes de Originar Alterações do Sistema Músculo-Esquelético e Medidas de Prevenção Adoptadas. </xs:documentation>
+																												</xs:annotation>
+																											</xs:attribute>
+																										</xs:restriction>
+																									</xs:simpleContent>
+																								</xs:complexType>
+																							</xs:element>
+																							<xs:element name="medidas_prev">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.4.4 Medidas de prevenção adoptadas. </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:sequence>
+																										<xs:element name="medida_prev" maxOccurs="unbounded">
+																											<xs:complexType>
+																												<xs:simpleContent>
+																													<xs:restriction base="t:codigoType">
+																														<xs:attribute name="tbl" use="required" fixed="FRRA_CM_PREV_ADOPT" type="xs:string">
+																															<xs:annotation>
+																																<xs:documentation> TABELA Nº 44 - Factores de Risco Relacionados com a Actividade, Capazes de Originar Alterações do Sistema Músculo-Esquelético e Medidas de Prevenção Adoptadas. </xs:documentation>
+																															</xs:annotation>
+																														</xs:attribute>
+																													</xs:restriction>
+																												</xs:simpleContent>
+																											</xs:complexType>
+																										</xs:element>
+																									</xs:sequence>
+																								</xs:complexType>
+																							</xs:element>
+																						</xs:sequence>
+																					</xs:extension>
+																				</xs:complexContent>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="identificados" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 5.4 Foram identificados factores de risco relacionados com a actividade, capazes de originar alterações no sistema músculo-esquelético? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="riscos_psico">
+																<xs:annotation>
+																	<xs:documentation>Factores de risco psicossociais e organizacionais. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="risco_psico" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Factor de risco psicossocial/organizacional. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:complexContent>
+																					<xs:extension base="fact_riscoType">
+																						<xs:sequence>
+																							<!-- IV - 5.5.2 Nº de trabalhadores expostos. -->
+																							<!-- IV - 5.5.3 Nº de avaliações efectuadas. -->
+																							<xs:element name="agente">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.5.1 Agente </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:simpleContent>
+																										<xs:restriction base="t:codigoType">
+																											<xs:attribute name="tbl" use="required" fixed="FRPO_COD_AGENTE" type="xs:string">
+																												<xs:annotation>
+																													<xs:documentation> TABELA Nº 45 - Factores de Risco Psicossociais e Organizacionais e Medidas de Prevenção Adoptadas. </xs:documentation>
+																												</xs:annotation>
+																											</xs:attribute>
+																										</xs:restriction>
+																									</xs:simpleContent>
+																								</xs:complexType>
+																							</xs:element>
+																							<xs:element name="medidas_prev">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.5.4 Medidas de prevenção adoptadas. </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:sequence>
+																										<xs:element name="medida_prev" maxOccurs="unbounded">
+																											<xs:complexType>
+																												<xs:simpleContent>
+																													<xs:restriction base="t:codigoType">
+																														<xs:attribute name="tbl" use="required" fixed="FRPO_CM_PREV_ADOPT" type="xs:string">
+																															<xs:annotation>
+																																<xs:documentation> TABELA Nº 45 - Factores de Risco Psicossociais e Organizacionais e Medidas de Prevenção Adoptadas. </xs:documentation>
+																															</xs:annotation>
+																														</xs:attribute>
+																													</xs:restriction>
+																												</xs:simpleContent>
+																											</xs:complexType>
+																										</xs:element>
+																									</xs:sequence>
+																								</xs:complexType>
+																							</xs:element>
+																						</xs:sequence>
+																					</xs:extension>
+																				</xs:complexContent>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="identificados" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 5.5 Foram identificados factores de risco psicossociais e organizacionais? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="riscos_sst">
+																<xs:annotation>
+																	<xs:documentation>Factores de risco para a segurança e saúde dos trabalhadores do trabalho. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="risco_sst" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Factor de risco para a segurança e saúde dos trabalhadores do trabalho. </xs:documentation>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:complexContent>
+																					<xs:extension base="fact_riscoType">
+																						<xs:sequence>
+																							<!-- IV - 5.6.2 Nº de trabalhadores expostos. -->
+																							<!-- IV - 5.6.3 Nº de avaliações efectuadas. -->
+																							<xs:element name="agente">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.6.1 Agente </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:simpleContent>
+																										<xs:restriction base="t:codigoType">
+																											<xs:attribute name="tbl" use="required" fixed="OFRSS_COD_AGENTE" type="xs:string">
+																												<xs:annotation>
+																													<xs:documentation> TABELA Nº 46 - Outros Factores de Risco para a Segurança e Saúde no trabalho e Medidas de Prevenção Adoptadas. </xs:documentation>
+																												</xs:annotation>
+																											</xs:attribute>
+																										</xs:restriction>
+																									</xs:simpleContent>
+																								</xs:complexType>
+																							</xs:element>
+																							<xs:element name="medidas_prev">
+																								<xs:annotation>
+																									<xs:documentation>IV - 5.6.4 Medidas de prevenção adoptadas. </xs:documentation>
+																								</xs:annotation>
+																								<xs:complexType>
+																									<xs:sequence>
+																										<xs:element name="medida_prev" maxOccurs="unbounded">
+																											<xs:complexType>
+																												<xs:simpleContent>
+																													<xs:restriction base="t:codigoType">
+																														<xs:attribute name="tbl" use="required" fixed="OFRSS_CM_PREV_ADOPT" type="xs:string">
+																															<xs:annotation>
+																																<xs:documentation> TABELA Nº 46 - Outros Factores de Risco para a Segurança e Saúde no trabalho e Medidas de Prevenção Adoptadas. </xs:documentation>
+																															</xs:annotation>
+																														</xs:attribute>
+																													</xs:restriction>
+																												</xs:simpleContent>
+																											</xs:complexType>
+																										</xs:element>
+																									</xs:sequence>
+																								</xs:complexType>
+																							</xs:element>
+																						</xs:sequence>
+																					</xs:extension>
+																				</xs:complexContent>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="identificados" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 5.6 Foram identificados factores de risco para a segurança e saúde dos trabalhadores no trabalho? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="exames" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>Exames de admissão, periódicos e/ou ocasionais. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="total" type="n_trab_escaloes_etariosTotalType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - Total de exames (Soma 6.1.1 a 6.1.3). </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="total_exam_adm" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.1 Total de exames de admissão. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="total_exam_peri" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.2 Total de exames periódicos. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="total_exam_ocas" type="n_trab_escaloes_etariosTotalType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3 Total de exames ocasionais (Soma de 6.1.3.1 a 6.1.3.10). </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="mudam_posto" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.1 Mudança de posto de trabalho. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="alter_posto" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.2 Alteração no posto de trabalho. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="reg_30dias" type="n_trab_escaloes_etariosTotalType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.3 Regresso ao trabalho após ausência superior a 30 dias (6.1.3.3.1 + 6.1.3.3.2). </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="reg_30dias_acid" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.3.1 Pós baixa por acidente de trabalho. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="reg_30dias_doen" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.3.2 Pós baixa por doença. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="inic_medico" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.4 Iniciativa do médico. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="pedido" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.5 Pedido do trabalhador. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="cessacao_contr" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.6 Por cessação do contrato de trabalho. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="outras_raz" type="n_trab_escaloes_etariosType" minOccurs="0">
+																			<xs:annotation>
+																				<xs:documentation>IV - 6.1.3.10 Outras razões. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="realizados" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 6.1 Foram realizados exames de admissão, periódicos e/ou ocasionais? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="exames_compl" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>IV - Exames complementares. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="exame_compl" minOccurs="0" maxOccurs="unbounded">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="exame">
+																						<xs:annotation>
+																							<xs:documentation>IV - 6.2.1 Exame. </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:simpleContent>
+																								<xs:restriction base="t:codigoType">
+																									<xs:attribute name="tbl" use="required" fixed="ECR_COD_EXAME" type="xs:string">
+																										<xs:annotation>
+																											<xs:documentation> TABELA Nº 47 - Exames Complementares Realizados: Exame. </xs:documentation>
+																										</xs:annotation>
+																									</xs:attribute>
+																								</xs:restriction>
+																							</xs:simpleContent>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="n_total" type="t:num5Type">
+																						<xs:annotation>
+																							<xs:documentation>IV - 6.2.2 Nº total de exames. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="factores_risco">
+																						<xs:annotation>
+																							<xs:documentation>Factores de risco </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:sequence>
+																								<xs:element name="factor_risco" maxOccurs="unbounded">
+																									<xs:annotation>
+																										<xs:documentation> IV - 6.2.3 Factor de risco. </xs:documentation>
+																									</xs:annotation>
+																									<xs:complexType>
+																										<xs:simpleContent>
+																											<xs:restriction base="t:codigoType">
+																												<xs:attribute name="tbl" use="required" fixed="ECR_FACT_RISCO" type="xs:string">
+																													<xs:annotation>
+																														<xs:documentation> TABELA Nº 47 - Exames Complementares Realizados: Factor de risco. </xs:documentation>
+																													</xs:annotation>
+																												</xs:attribute>
+																											</xs:restriction>
+																										</xs:simpleContent>
+																									</xs:complexType>
+																								</xs:element>
+																							</xs:sequence>
+																						</xs:complexType>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="realizados" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 6.2 Foram realizados exames complementares? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="accoes_imun" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>IV - Acções de imunização. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="accao_imun" minOccurs="0" maxOccurs="unbounded">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="vacina">
+																						<xs:annotation>
+																							<xs:documentation>IV - 6.3.1 Vacina. </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:simpleContent>
+																								<xs:restriction base="t:codigoType">
+																									<xs:attribute name="tbl" use="required" fixed="AI_COD_VACINA" type="xs:string">
+																										<xs:annotation>
+																											<xs:documentation> TABELA Nº 48 - Vacina. </xs:documentation>
+																										</xs:annotation>
+																									</xs:attribute>
+																								</xs:restriction>
+																							</xs:simpleContent>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="n_inoc" type="t:num5Type">
+																						<xs:annotation>
+																							<xs:documentation>IV - 6.3.2 Nº de inoculações. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="n_trab" type="n_trabType">
+																						<xs:annotation>
+																							<xs:documentation>IV - 6.3.3 Nº de trabalhadores. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="realizadas" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 6.3 Foram realizadas acções de imunização? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="accoes_prom" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>IV - Acções de promoção da saúde no trabalho. </xs:documentation>
+																</xs:annotation>
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="accao_prom" minOccurs="0" maxOccurs="unbounded">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="actividade">
+																						<xs:annotation>
+																							<xs:documentation>IV - 6.4.1 Actividade desenvolvida. </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:simpleContent>
+																								<xs:restriction base="t:codigoType">
+																									<xs:attribute name="tbl" use="required" fixed="PST_COD_ACT_DESENV" type="xs:string">
+																										<xs:annotation>
+																											<xs:documentation> TABELA Nº 49 - Actividade desenvolvida. </xs:documentation>
+																										</xs:annotation>
+																									</xs:attribute>
+																								</xs:restriction>
+																							</xs:simpleContent>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="n_accoes" type="t:num5Type">
+																						<xs:annotation>
+																							<xs:documentation>IV - 6.4.2 Nº de acções de promoção da saúde realizadas. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="n_trab">
+																						<xs:annotation>
+																							<xs:documentation>IV - 6.4.3 Nº de trabalhadores abrangidos. </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:sequence>
+																								<xs:element name="h" type="t:num5Type">
+																									<xs:annotation>
+																										<xs:documentation> Homens. </xs:documentation>
+																									</xs:annotation>
+																								</xs:element>
+																								<xs:element name="m" type="t:num5Type">
+																									<xs:annotation>
+																										<xs:documentation> Mulheres. </xs:documentation>
+																									</xs:annotation>
+																								</xs:element>
+																							</xs:sequence>
+																						</xs:complexType>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="realizadas" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>IV - 6.4 Foram realizadas acções de imunização? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<!-- V - ACIDENTES DE TRABALHO E DOENÇAS PROFISSIONAIS -->
+															<xs:element name="aciden_trab_i311">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="acidentes" minOccurs="0">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<!-- V - 1.1 Número de acidentes de trabalho e de dias de trabalho perdidos com baixa, segundo o escalão de duração da baixa (não incluir neste item a informação referente aos acidentes de trajecto). -->
+																					<xs:element name="n_aciden_ocorr">
+																						<xs:annotation>
+																							<xs:documentation>V - 1.1.1 Nº de acidentes de trabalho (AT) ocorridos no ano de referência do relatório. </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:complexContent>
+																								<xs:extension base="aciden_trabType">
+																									<xs:sequence>
+																										<xs:element name="inf_1dia" type="n_trabType">
+																											<xs:annotation>
+																												<xs:documentation> Inferior a 1 dia (sem dar lugar a baixa). </xs:documentation>
+																											</xs:annotation>
+																										</xs:element>
+																										<xs:element name="mortal" type="n_trabType">
+																											<xs:annotation>
+																												<xs:documentation> Mortal. </xs:documentation>
+																											</xs:annotation>
+																										</xs:element>
+																									</xs:sequence>
+																								</xs:extension>
+																							</xs:complexContent>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="n_aciden_perdi" type="aciden_trabType">
+																						<xs:annotation>
+																							<xs:documentation>V - 1.1.2 Nº de dias de trabalho perdidos na sequência de AT ocorridos no ano de referência do relatório. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="n_aciden_perdi_ant" type="aciden_trabType">
+																						<xs:annotation>
+																							<xs:documentation>V - 1.1.3 Nº de dias de trabalho perdidos no ano de referência do relatório, na sequencia de AT ocorridos em anos anteriores. </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<!-- V - 1.2 Calculo das taxas de frequência e gravidade dos acidentes de trabalho não mortais, segundo as fórmulas. -->
+																					<xs:element name="tax_freq" type="t:decimalType" minOccurs="0">
+																						<xs:annotation>
+																							<xs:documentation>V - 1.2.1 Taxa de frequência: Tf = (Nº de acidentes de trabalho com baixa / Nº horas efectivamente trabalhadas) x 1.000.000 </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="tax_grav" type="t:decimalType" minOccurs="0">
+																						<xs:annotation>
+																							<xs:documentation>V - 1.2.2 Taxa de gravidade: Tg = (Nº de dias perdidos / Nº horas efectivamente trabalhadas) x 1.000.000 </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="ocorreram" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>V - 1. Ocorreram acidentes de trabalho, no tempo de trabalho. com trabalhadores indicados no quadro I, questão 3.1.1? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="aciden_trab_i32">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="acidentes" minOccurs="0">
+																			<xs:complexType>
+																				<xs:sequence>
+																					<!-- V 2.1 Número de acidentes de trabalho (não incluir neste item a informação referente aos acidentes de trajecto). -->
+																					<xs:element name="n_aciden">
+																						<xs:annotation>
+																							<xs:documentation>V - 2.1.1 Nº de acidentes de trabalho. </xs:documentation>
+																						</xs:annotation>
+																						<xs:complexType>
+																							<xs:sequence>
+																								<xs:element name="total" type="n_trabType">
+																									<xs:annotation>
+																										<xs:documentation> Total. </xs:documentation>
+																									</xs:annotation>
+																								</xs:element>
+																								<xs:element name="nao_mortal" type="n_trabType" minOccurs="0">
+																									<xs:annotation>
+																										<xs:documentation> Não mortal. </xs:documentation>
+																									</xs:annotation>
+																								</xs:element>
+																								<xs:element name="mortal" type="n_trabType" minOccurs="0">
+																									<xs:annotation>
+																										<xs:documentation> Mortal. </xs:documentation>
+																									</xs:annotation>
+																								</xs:element>
+																							</xs:sequence>
+																						</xs:complexType>
+																					</xs:element>
+																					<xs:element name="tax_incid_total" type="t:decimalType" minOccurs="0">
+																						<xs:annotation>
+																							<xs:documentation>V - 2.2.1 Taxa de incidência (Total AT): TiT = (Nº de AT Totais / Nº total de trabalhadores em I - 3.2) x 1.000 </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																					<xs:element name="tax_incid_mortal" type="t:decimalType" minOccurs="0">
+																						<xs:annotation>
+																							<xs:documentation>V - 2.2.2 Taxa de incidência (AT mortais): TiM = (Nº de AT mortais / Nº total de trabalhadores em I - 3.2) x 1.000 </xs:documentation>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="ocorreram" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>V - 2. Ocorreram acidentes de trabalho, no tempo de trabalho, com trabalhadores indicados no quadro I, questão 3.2? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<!-- V - 3. Taxa de incidência dos acidentes de trabalho totais e mortais, occorridos com os trabalhadores indicados no quadro I, questões 3.11 e 3.2 -->
+															<xs:element name="tax_incid_total" type="t:decimalType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>V - 3.1 Taxa de incidência (Total AT) TiT = (Nº de AT Totais / Nº total de trabalhadores em I - 3.1.1 e I - 3.2) x 1.000 </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="tax_incid_mortal" type="t:decimalType" minOccurs="0">
+																<xs:annotation>
+																	<xs:documentation>V - 3.2 Taxa de incidência (AT mortais) TiM = (Nº de AT mortais / Nº total de trabalhadores em I - 3.1.1 e I - 3.2) x 1.000 </xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<!-- V - 4. Doenças Profissionais de participação obrigatória. -->
+															<xs:element name="doenc_partic">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="doenc" type="doenca_profType" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Doença participada no ano de referência do relatório. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="participadas" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>V - 4.1 Foram participadas doenças no ano de refência do relatório? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="doenc_conf">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="doenc" type="doenca_profType" minOccurs="0" maxOccurs="unbounded">
+																			<xs:annotation>
+																				<xs:documentation>Doença confirmada no ano de referência do relatório. </xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																	<xs:attribute name="confirmadas" use="required" type="t:choiceType">
+																		<xs:annotation>
+																			<xs:documentation>V - 4.2 Foram confirmadas doenças no ano de referência do relatório? </xs:documentation>
+																		</xs:annotation>
+																	</xs:attribute>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="id" use="required" type="xs:long">
+									<xs:annotation>
+										<xs:documentation>ID Unidade Local</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="sede" use="required" type="t:choiceType">
+									<xs:annotation>
+										<xs:documentation>Unidade Local é sede para a data de referência do anexo. </xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="XML_DATA" use="required" fixed="2.3.14" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Versão da estrutura XML</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ano" use="required" type="t:yearType">
+			<xs:annotation>
+				<xs:documentation>Ano de referência.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="entidade" use="required" type="xs:long">
+			<xs:annotation>
+				<xs:documentation>ID Entidade.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="n_medio_trabType">
+		<xs:annotation>
+			<xs:documentation>Número médio de trabalhadores afectos à unidade local (estabelecimento), no ano. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="total" type="t:num6Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Total.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="h" type="t:num5Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Homens.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="m" type="t:num5Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Mulheres.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="responsavelType">
+		<xs:sequence>
+			<xs:element name="nif" type="t:nifType">
+				<xs:annotation>
+					<xs:documentation>Número de Identificação Fiscal (NIF). </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nome" type="t:max70Type">
+				<xs:annotation>
+					<xs:documentation>Nome</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="intervenienteType">
+		<xs:sequence>
+			<xs:element name="nome" type="t:max70Type">
+				<xs:annotation>
+					<xs:documentation>Nome</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_autorizacao" type="t:num8Type">
+				<xs:annotation>
+					<xs:documentation>Nº de autorização.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="servicoType">
+		<xs:sequence>
+			<xs:element name="nif" type="t:nifType">
+				<xs:annotation>
+					<xs:documentation>Número de Identificação Fiscal (NIF). </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="denominacao" type="t:max100Type" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<!-- Este campo é opcional a partir do RU 2017, mantendo-se por questões de utilização pela Applet-->
+					<xs:documentation>Denominação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tipo">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="t:codigoType">
+							<xs:attribute name="tbl" use="required" fixed="RU_TEP" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>TABELA Nº 37 - Tipo de serviço externo prestado. </xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="n_trabType">
+		<xs:annotation>
+			<xs:documentation>Nº de trabalhadores.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="h" type="t:num4Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Homens.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="m" type="t:num4Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Mulheres.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="n_trabTotalType">
+		<xs:annotation>
+			<xs:documentation>Nº de trabalhadores.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="h" type="t:num6Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Homens.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="m" type="t:num6Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Mulheres.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fact_riscoType">
+		<xs:annotation>
+			<xs:documentation>Factor de risco.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="n_trab_expo" type="n_trabType">
+				<xs:annotation>
+					<xs:documentation>Nº de trabalhadores expostos</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="n_aval" type="t:num3Type">
+				<xs:annotation>
+					<xs:documentation>Nº de avaliações efectuadas.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="n_trab_escaloes_etariosType">
+		<xs:sequence>
+			<xs:element name="total" type="n_trabTotalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Total.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="inf_18" type="n_trabType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Inferior a 18 anos.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="de_18a19" type="n_trabType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>18 a 19 anos.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="de_20a49" type="n_trabType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>20 a 49 anos.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="de_50amais" type="n_trabType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>50 e mais anos.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="n_trab_escaloes_etariosTotalType">
+		<xs:sequence>
+			<xs:element name="total" type="n_trabTotalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Total.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="inf_18" type="n_trabTotalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Inferior a 18 anos.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="de_18a19" type="n_trabTotalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>18 a 19 anos.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="de_20a49" type="n_trabTotalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>20 a 49 anos.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="de_50amais" type="n_trabTotalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>50 e mais anos.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="aciden_trabType">
+		<xs:sequence>
+			<xs:element name="total" type="n_trabTotalType">
+				<xs:annotation>
+					<xs:documentation>Total.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="de_1a3" type="n_trabType">
+				<xs:annotation>
+					<xs:documentation>1 a 3 dias de baixa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="de_4a30" type="n_trabType">
+				<xs:annotation>
+					<xs:documentation>4 a 30 dias de baixa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sup_30" type="n_trabType">
+				<xs:annotation>
+					<xs:documentation>Superior a 30 dias de baixa.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="doenca_profType">
+		<xs:sequence>
+			<xs:element name="fact_risco">
+				<xs:annotation>
+					<xs:documentation>Factor de risco.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="t:codigoType">
+							<xs:attribute name="tbl" use="required" fixed="DPPO_COD_FACT_RISCO" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>TABELA Nº 50 - Doenças Profissionais de Participação Obrigatória: Factor de risco. </xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="doenca">
+				<xs:annotation>
+					<xs:documentation>Doença profissional.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:restriction base="t:codigoType">
+							<xs:attribute name="tbl" use="required" fixed="DPPO_COD_DOENCA" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>TABELA Nº 50 - Doenças Profissionais de Participação Obrigatória: Código da doença profissional. </xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:restriction>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="n_casos" type="n_trabType">
+				<xs:annotation>
+					<xs:documentation>Número de casos participados.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

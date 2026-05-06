@@ -1,6 +1,11 @@
 import * as XLSX from 'xlsx'
 import type { RFCData, RFCConfig, TrainingAction, Worker } from '../types'
 
+export interface ParseResult {
+  data: RFCData
+  warnings: string[]
+}
+
 function sheetToRows(ws: XLSX.WorkSheet): Record<string, string>[] {
   const range = XLSX.utils.decode_range(ws['!ref'] ?? 'A1')
   if (range.e.r < 1) return []
@@ -58,8 +63,9 @@ function parseAcoes(ws: XLSX.WorkSheet): TrainingAction[] {
     }))
 }
 
-function parseWorkers(ws: XLSX.WorkSheet): Worker[] {
+function parseWorkers(ws: XLSX.WorkSheet): { workers: Worker[]; warnings: string[] } {
   const rows = sheetToRows(ws).filter(r => r['NISS'])
+  const warnings: string[] = []
 
   // Group rows by NISS to merge multiple training registrations per worker
   const byNiss = new Map<string, Worker>()
@@ -67,15 +73,24 @@ function parseWorkers(ws: XLSX.WorkSheet): Worker[] {
   for (const row of rows) {
     const niss = row['NISS']
     const trainingIdRaw = row['ID Formação']
+    const nome = row['Nome'] ?? ''
+    const sitFreq = extractCode(row['Sit. Frequência (cód)'] ?? '')
+    const identRegApli = extractCode(row['Regime Reforma (cód)'] ?? '')
 
     if (!byNiss.has(niss)) {
-      byNiss.set(niss, {
-        niss,
-        nome: row['Nome'] ?? '',
-        identRegApli: extractCode(row['Regime Reforma (cód)'] ?? ''),
-        situacaoFreq: extractCode(row['Sit. Frequência (cód)'] ?? ''),
-        registos: [],
-      })
+      byNiss.set(niss, { niss, nome, identRegApli, situacaoFreq: sitFreq, registos: [] })
+    } else {
+      const existing = byNiss.get(niss)!
+      if (existing.situacaoFreq !== sitFreq && sitFreq) {
+        warnings.push(
+          `NISS ${niss}: Sit. Frequência inconsistente entre linhas ("${existing.situacaoFreq}" vs "${sitFreq}") — foi usado o primeiro valor.`
+        )
+      }
+      if (existing.nome !== nome && nome) {
+        warnings.push(
+          `NISS ${niss}: Nome inconsistente entre linhas ("${existing.nome}" vs "${nome}") — foi usado o primeiro valor.`
+        )
+      }
     }
 
     const worker = byNiss.get(niss)!
@@ -92,15 +107,15 @@ function parseWorkers(ws: XLSX.WorkSheet): Worker[] {
         iniciativa: extractCode(row['Iniciativa (cód)'] ?? ''),
         horario: extractCode(row['Horário (cód)'] ?? ''),
         diploma: extractCode(row['Diploma (cód)'] ?? ''),
-        periodosRef: periodosRef.length > 0 ? periodosRef : ['01'],
+        periodosRef, // empty array surfaces as validation error, not silently defaulted
       })
     }
   }
 
-  return Array.from(byNiss.values())
+  return { workers: Array.from(byNiss.values()), warnings }
 }
 
-export function parseExcel(buffer: ArrayBuffer): RFCData {
+export function parseExcel(buffer: ArrayBuffer): ParseResult {
   const wb = XLSX.read(buffer, { type: 'array' })
 
   const configSheet = wb.Sheets['Configuração']
@@ -114,7 +129,7 @@ export function parseExcel(buffer: ArrayBuffer): RFCData {
 
   const config = parseConfig(configSheet)
   const trainingActions = parseAcoes(acoesSheet)
-  const workers = parseWorkers(trabSheet)
+  const { workers, warnings } = parseWorkers(trabSheet)
 
-  return { config, trainingActions, workers }
+  return { data: { config, trainingActions, workers }, warnings }
 }

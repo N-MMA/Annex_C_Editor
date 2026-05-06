@@ -16,6 +16,7 @@ export function validate(data: RFCData): ValidationError[] {
   if (!/^\d+$/.test(config.entityId)) err('Configuração', undefined, 'ID da Entidade', 'Deve ser um número inteiro.')
   if (!config.year || !/^\d{4}$/.test(config.year)) err('Configuração', undefined, 'Ano de Referência', 'Deve ser um ano com 4 dígitos.')
   if (!config.cae) err('Configuração', undefined, 'CAE', 'Campo obrigatório.')
+  else if (!/^\d{5}$/.test(config.cae)) err('Configuração', undefined, 'CAE', 'Deve ser um código CAE Rev.4 de 5 dígitos numéricos (ex: 62010).')
   if (config.hasWorkers !== 'S' && config.hasWorkers !== 'N') err('Configuração', undefined, 'Existiram trabalhadores', 'Deve ser "S" ou "N".')
 
   if (config.hasWorkers === 'N') return errors // nothing else to validate
