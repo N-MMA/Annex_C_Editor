@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:t="http://www.gep.msess.gov.pt/sguri/tipos_comuns"
+           targetNamespace="http://www.gep.msess.gov.pt/sguri/schemas/entity_workers"
+           elementFormDefault="qualified"
+           xmlns="http://www.gep.msess.gov.pt/sguri/schemas/entity_workers">
+    <xs:import schemaLocation="tipos-comuns-1.3.14.xsd" namespace="http://www.gep.msess.gov.pt/sguri/tipos_comuns"/>
+    <xs:element name="workers" type="workersType"/>
+    <xs:complexType name="workersType">
+        <xs:sequence>
+            <xs:element name="worker" type="workerType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="workerType">
+        <xs:sequence>
+            <xs:element name="year_id" type="t:yearType"/>
+            <xs:element name="worker_entity" type="xs:long"/>
+            <xs:element name="worker_estab" type="xs:long"/>
+            <xs:element name="worker_id" type="xs:long"/>
+            <xs:element name="worker_niss" type="t:nissType"/>
+            <xs:element name="worker_name" type="xs:string"/>
+            <xs:element name="worker_sex" type="xs:string"/>
+            <xs:element name="worker_dt_nasc" type="t:yearmonthType"/>
+            <xs:element name="worker_dt_ee" type="t:yearmonthType"/>
+            <xs:element name="worker_tp_cont" type="xs:int"/>
+            <xs:element name="worker_nac" type="t:countryType"/>
+            <xs:element name="worker_hab_lit" type="xs:int"/>
+            <xs:element name="worker_nif" type="t:nifType"/>
+            <xs:element name="worker_irct_code" type="xs:string"/>
+            <xs:element name="worker_line" type="xs:string"/>
+            <xs:element name="worker_dt_ult_promotion" type="xs:string"/>
+            <xs:element name="worker_remun_base" type="xs:string"/>
+            <xs:element name="worker_bonus" type="xs:string"/>
+            <xs:element name="worker_overtime_income" type="xs:string"/>
+            <xs:element name="worker_irregular_income" type="xs:string"/>
+            <xs:element name="worker_hours" type="xs:string"/>
+            <xs:element name="worker_hours_overtime" type="xs:string"/>
+            <xs:element name="worker_pnt" type="xs:string"/>
+            <xs:element name="worker_remun_control" type="xs:string"/>
+            <xs:element name="worker_cat_prof_code" type="xs:string"/>
+            <xs:element name="worker_profession_code" type="xs:string"/>
+            <xs:element name="worker_sit_lei" type="xs:string"/>
+            <xs:element name="worker_sit_profession" type="xs:string"/>
+            <xs:element name="worker_work_duration" type="xs:string"/>
+            <xs:element name="worker_date_act" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

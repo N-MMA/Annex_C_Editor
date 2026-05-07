@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:t="http://www.gep.msess.gov.pt/sguri/tipos_comuns"
+           targetNamespace="http://www.gep.msess.gov.pt/sguri/sul"
+           xmlns="http://www.gep.msess.gov.pt/sguri/sul"
+           elementFormDefault="qualified"
+           version="1.2.14">
+    <xs:import schemaLocation="tipos-comuns-1.3.14.xsd" namespace="http://www.gep.msess.gov.pt/sguri/tipos_comuns"/>
+    <xs:element name="entity" type="entityType"/>
+    <xs:element name="changes" type="changesType"/>
+    <xs:element name="entity_id" type="xs:long">
+        <xs:annotation>
+            <xs:documentation>ID Entidade.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="nif" type="t:nifType">
+        <xs:annotation>
+            <xs:documentation>Número de Identificação Fiscal (NIF).</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="niss" type="t:nissType">
+        <xs:annotation>
+            <xs:documentation>Número de Identificação da Segurança Social (NISS).</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="name" type="t:max70Type">
+        <xs:annotation>
+            <xs:documentation>Nome</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="address" type="addressType">
+        <xs:annotation>
+            <xs:documentation>Morada.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="mailing_address" type="baseAddressType">
+        <xs:annotation>
+            <xs:documentation>Morada de correspondência.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="phone" type="t:phoneType">
+        <xs:annotation>
+            <xs:documentation>Telefone/Telemóvel.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="fax" type="t:phoneType">
+        <xs:annotation>
+            <xs:documentation>Fax</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="email" type="t:emailType">
+        <xs:annotation>
+            <xs:documentation>Endereço de correio electrónico</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="ln" type="t:lnType">
+        <xs:annotation>
+            <xs:documentation>Código de Natureza Jurídica.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="cae" type="t:caeType">
+        <xs:annotation>
+            <xs:documentation>Código de Actividade económica principal (CAE)</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="est_date" type="t:yearmonthType">
+        <xs:annotation>
+            <xs:documentation>Data de constituição.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="employees" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>Total de pessoas ao serviço.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="tcos" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>Número de trabalhadores por contra de outrem com contrato ao abrigo do Código do Trabalho </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="tcos_publ" type="xs:integer">
+        <xs:annotation>
+            <xs:documentation>Número de trabalhadores por contra de outrem com contrato ao abrigo da Lei Geral do Trabalho em Funções Públicas </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="start_date" type="t:dateType">
+        <xs:annotation>
+            <xs:documentation>Data de início.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="num" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>Nº da unidade local (estabelecimento)</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="dcf" type="t:dcfType">
+        <xs:annotation>
+            <xs:documentation>Distrito ou Ilha/Município/Freguesia</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="country" type="t:countryType">
+        <xs:annotation>
+            <xs:documentation>Código de País</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="estab_id" type="xs:long">
+        <xs:annotation>
+            <xs:documentation>ID Unidade Local (Estabelecimento).</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="status" type="xs:int">
+        <xs:annotation>
+            <xs:documentation>Código de estado.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="estab" type="establishmentType"/>
+    <xs:element name="change_date" type="t:fulldateType"/>
+    <xs:complexType name="entityType">
+        <xs:sequence>
+            <xs:element ref="entity_id"/>
+            <xs:element ref="nif"/>
+            <xs:element ref="niss"/>
+            <xs:element ref="name">
+                <xs:annotation>
+                    <xs:documentation>Nome ou designação social.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="address"/>
+            <xs:element ref="mailing_address" minOccurs="0"/>
+            <xs:element ref="phone"/>
+            <xs:element ref="fax" minOccurs="0"/>
+            <xs:element ref="email" minOccurs="0"/>
+            <xs:element ref="cae"/>
+            <xs:element name="cae_description" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Actividade económica principal (CAE)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="status" minOccurs="0"/>
+            <xs:element name="status_description" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Descrição do estado.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="ln" minOccurs="0"/>
+            <xs:element name="ln_description" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Natureza Jurídica.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="est_date" minOccurs="0"/>
+            <xs:element ref="employees" minOccurs="0"/>
+            <xs:element ref="tcos" minOccurs="0"/>
+            <xs:element ref="tcos_publ" minOccurs="0"/>
+            <xs:element name="estabs">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="estab" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="changesType">
+        <xs:sequence>
+            <xs:element name="entity">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="change_date"/>
+                        <xs:element ref="status" minOccurs="0"/>
+                        <xs:element name="status_description" minOccurs="0" type="xs:string"/>
+                        <xs:element name="estabs">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="estab" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element ref="change_date"/>
+                                                <xs:element ref="status"/>
+                                                <xs:element name="status_description" minOccurs="0" type="xs:string"/>
+                                            </xs:sequence>
+                                            <xs:attribute name="id" use="required" type="xs:long"/>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="id" use="required" type="xs:long"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="establishmentType">
+        <xs:sequence>
+            <xs:element ref="estab_id"/>
+            <xs:element name="hq" type="xs:boolean" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Sede</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="num"/>
+            <xs:element ref="nif"/>
+            <xs:element ref="name"/>
+            <xs:element ref="address"/>
+            <xs:element ref="phone"/>
+            <xs:element ref="fax" minOccurs="0"/>
+            <xs:element ref="email" minOccurs="0"/>
+            <xs:element ref="cae"/>
+            <xs:element name="cae_description" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Actividade económica principal (CAE)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="county" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Código de Distrito</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="county_description" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Distrito</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="start_date" minOccurs="0"/>
+            <xs:element ref="status" minOccurs="0"/>
+            <xs:element name="status_description" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Descrição do estado.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element ref="employees" minOccurs="0"/>
+            <xs:element ref="tcos" minOccurs="0"/>
+            <xs:element ref="tcos_publ" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="baseAddressType">
+        <xs:sequence>
+            <xs:element name="address" type="t:max150Type">
+                <xs:annotation>
+                    <xs:documentation>Morada.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="location" type="t:max40Type">
+                <xs:annotation>
+                    <xs:documentation>Localidade.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="zipcode" type="t:zipCodeType">
+                <xs:annotation>
+                    <xs:documentation>Código Postal</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="zipcode_description" type="xs:string" maxOccurs="1" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Descrição de Código Postal.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addressType">
+        <xs:complexContent>
+            <xs:extension base="baseAddressType">
+                <xs:sequence>
+                    <xs:element ref="dcf"/>
+                    <xs:element name="dcf_description" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Distrito ou Ilha/Município/Freguesia</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="country" minOccurs="0"/>
+                    <xs:element name="country_description" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>País</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

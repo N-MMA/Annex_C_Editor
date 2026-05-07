@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.gep.msess.gov.pt/sguri/codigos"
+           targetNamespace="http://www.gep.msess.gov.pt/sguri/codigos"
+           elementFormDefault="qualified"
+           version="1.1">
+    <xs:element name="version" type="versionType"/>
+    <xs:complexType name="versionType">
+        <xs:sequence>
+            <xs:element name="TBL_CODES" type="TBL_CODESType"/>
+        </xs:sequence>
+        <xs:attribute name="XML_AUX" use="required" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="TBL_CODESType">
+        <xs:sequence>
+            <xs:element name="tabela" type="tabelaType" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="related_pairs" type="related_pairsType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="tabelaType">
+        <xs:sequence>
+            <xs:element name="codes">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="code" maxOccurs="unbounded" minOccurs="0" type="codeType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="fd" type="xs:string"/>
+        <xs:attribute name="t_id" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="codeType">
+        <xs:sequence>
+            <xs:element name="c" type="xs:string"/>
+            <xs:element name="v" type="xs:string"/>
+            <xs:element name="v2c" type="xs:string" minOccurs="0"/>
+            <xs:element name="v3c" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="related_pairsType">
+        <xs:sequence>
+            <xs:element name="pair" type="pairType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="pairType">
+        <xs:sequence>
+            <xs:element name="t1" type="xs:string"/>
+            <xs:element name="c1" type="xs:string"/>
+            <xs:element name="t2" type="xs:string"/>
+            <xs:element name="c2" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
