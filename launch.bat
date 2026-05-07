@@ -49,7 +49,7 @@ echo Abra http://localhost:8000 no seu browser.
 echo Prima Ctrl+C para parar.
 echo.
 cd dist
-%PYTHON% -m http.server 8000
+%PYTHON% serve.py 8000
 exit /b 0
 
 :: ── Node.js present ───────────────────────────────────────────────────────────
